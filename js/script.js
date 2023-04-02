@@ -1,23 +1,52 @@
+
 (function ($) {
   'use strict';
-
+ 
+  if (window.innerWidth <= 768 ) {
+    $('.navigation').addClass('nav-bg'); 
+  }
+ 
   // Sticky Menu
   $(window).scroll(function () {
-    if ($('.navigation').offset().top > 100) {
-      $('.navigation').addClass('nav-bg');
-    } else {
-      $('.navigation').removeClass('nav-bg');
+    if (window.innerWidth > 768 ) {
+      if ($('.navigation').offset().top > 100) {
+        $('.navigation').addClass('nav-bg');
+      } else {
+        $('.navigation').removeClass('nav-bg');
+      }
     }
   });
 
 // menu bug
 $(".navbar-toggle-button-click").click(function(){
-  if ($('.navigation').hasClass('nav-bg') && ($('.navigation').offset().top === 0)) {
-    $('.navigation').removeClass('nav-bg');
-  } else {
+  if (!($('.navigation').hasClass('nav-bg')) && ($('.navigation').offset().top === 0)) {
     $('.navigation').addClass('nav-bg');
   }
 });
+
+$(document).click(function () {
+  // if($(".navbar-collapse").hasClass("in")){
+    $('.navbar-collapse').collapse('hide');
+  // }
+});
+
+ // scrolling
+ $('.scrolling-homepage').on('click', () => window.scrollTo({
+  top: 0,
+  behavior: 'smooth',
+}));
+
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+    $('.scrolling-homepage').addClass('show-elements-onscroll-button');
+  }
+  else {
+    $('.scrolling-homepage').removeClass('show-elements-onscroll-button')
+  }
+  
+}
 
 
   // team slider
